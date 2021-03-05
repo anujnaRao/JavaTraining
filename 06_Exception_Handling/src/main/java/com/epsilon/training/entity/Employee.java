@@ -21,7 +21,7 @@ public class Employee {
 	}
 	public void setName(String name)throws InvalidNameException{
 		if(name == null || name.length() >15 || name.length() <3) {
-			throw new InvalidNameException("Please enter id within 1 - 99999");
+			throw new InvalidNameException("Name cannot be null or less than 3 letters or more than 15 letters");
 		}
 		this.name = name;
 	}
@@ -29,15 +29,14 @@ public class Employee {
 		return salary;
 	}
 	public void setSalary(double salary)throws InvalidSalaryException {
-		if(id <= 0 || id > 99999) {
-			throw new InvalidIdException("Please enter id within 1 - 99999");
+		if (salary < 15000 | salary > 200000) {
+			throw new InvalidSalaryException("Salary must be between 15000 and 200000");
 		}
 		this.salary = salary;
 	}
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", toString()=" + super.toString()
-				+ "]";
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + ", toString()=" + "]";
 	}
 	
 	
