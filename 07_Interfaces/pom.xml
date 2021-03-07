@@ -5,7 +5,5 @@
     <artifactId>training-parent-pom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.epsilon</groupId>
   <artifactId>training</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-</project>
+  </project>
