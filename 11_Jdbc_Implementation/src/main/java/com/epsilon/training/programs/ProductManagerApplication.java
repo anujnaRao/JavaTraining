@@ -6,7 +6,7 @@ import java.util.List;
 import com.epsilon.training.dao.DaoFactory;
 import com.epsilon.training.dao.ProductDao;
 import com.epsilon.training.entity.Product;
-import com.epsilon.training.utils.KeyBoardUtil;
+import com.epsilon.trainig.utils.KeyBoardUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,7 +63,6 @@ public class ProductManagerApplication {
 		}
 
 	}
-
 
 	void acceptAndGetByPriceRange() {
 		try {
@@ -134,7 +133,6 @@ public class ProductManagerApplication {
 		}
 
 	}
-
 
 	void acceptAndDeleteProductDetails() {
 		try {

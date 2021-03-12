@@ -1,5 +1,6 @@
 package com.epsilon.training.dao;
 
+
 import java.util.ResourceBundle;
 
 public final class DaoFactory {
@@ -16,16 +17,16 @@ public final class DaoFactory {
 			ResourceBundle rb = ResourceBundle.getBundle("dao");
 			discriminator = rb.getString("dao.impl");
 		} else {
-			discriminator =  envVal;
+			discriminator =  "jdbc";
 		}
 	}
 	
 	public static ProductDao getProductDao() {
 		switch(discriminator.toUpperCase()) {
 		case "DUMMY":
-			return new DefaultProfuctDao();
+			throw new RuntimeException("Please implement the ProductDao");
 		case "ARRAY":
-			return new ArrayProductDao();
+			throw new RuntimeException("Please implement the ProductDao");
 		case "JDBC":
 			return new JdbcProductDao();
 		case "MONGODB":

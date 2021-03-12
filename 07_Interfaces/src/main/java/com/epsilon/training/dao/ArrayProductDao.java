@@ -25,13 +25,13 @@ public class ArrayProductDao implements ProductDao{
 		if(product.getId() < 0 || product.getId() > 99999) {
 			throw new RuntimeException("Please enter valid ID");
 		} else {
-			for(int i = 0; i< list.length;i++) {
-				if(list[i] ==  product.getId()) {
-					throw new RuntimeException("Id already exists");
-				} else {
-					list[count++] = product.getId();
-				}
-			}
+//			for(int i = 0; i< list.length;i++) {
+//				if(list[i] ==  product.getId()) {
+//					throw new RuntimeException("Id already exists");
+//				} else {
+//					list[count++] = product.getId();
+//				}
+//			}
 
 			if(product.getName() == null || product.getName().length() >15 || product.getName().length() <3) {
 				throw new RuntimeException("Name cannot be null or less than 3 letters or more than 15 letters");
@@ -62,6 +62,9 @@ public class ArrayProductDao implements ProductDao{
 	public Product getProduct(int id) {
 		//		log.debug("ArrayProductDao.addProduct() called with {}", product);
 		int position = 0;
+		if (products == null || index <= 0 || index >= index) { 
+			throw new RuntimeException("No item is present in the list");
+		} 
 		for(int i = 0; i < index;i++) {
 			if(products[i].getId() ==  id) {
 				log.debug("The product exisits: ");
@@ -82,7 +85,6 @@ public class ArrayProductDao implements ProductDao{
 			if(products[i].getId() ==  product.getId()) {
 				log.debug("Updated details: ");
 				this.getProduct(product.getId());
-
 			}
 		}
 		if(c == index) {
