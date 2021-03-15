@@ -1,4 +1,4 @@
-package com.epsilon.trainig.utils;
+package com.epsilon.training.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

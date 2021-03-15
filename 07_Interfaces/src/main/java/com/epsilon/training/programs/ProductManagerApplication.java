@@ -77,7 +77,7 @@ public class ProductManagerApplication {
 			System.out.println("");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying fetch");
 			log.warn(ex.getMessage());
 		}
 
@@ -95,7 +95,7 @@ public class ProductManagerApplication {
 			System.out.println("");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying fetch");
 			log.warn(ex.getMessage());
 		}
 
@@ -112,7 +112,7 @@ public class ProductManagerApplication {
 			System.out.println("");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying to fetch");
 			log.warn(ex.getMessage());
 		}
 
@@ -129,7 +129,7 @@ public class ProductManagerApplication {
 			System.out.println("");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying to fetch");
 			log.warn(ex.getMessage());
 		}
 
@@ -144,23 +144,24 @@ public class ProductManagerApplication {
 			System.out.println("Product deleted successfully");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying to delete the product");
 			log.warn(ex.getMessage());
 		}
 	}
 
 	void acceptAndUpdateProductDetails() {
 		try {
+			int id = KeyBoardUtil.getInt("Enter the id: ");
 			double unitPrice = KeyBoardUtil.getDouble("Enter the price per unit: ");
-
 			Product p = new Product();
+			p.setId(id);
 			p.setUnitPrice(unitPrice);
 
 			dao.updateProduct(p);
 			System.out.println("Producr details updated");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying to update the product");
 			log.warn(ex.getMessage());
 		}
 	}
@@ -170,20 +171,20 @@ public class ProductManagerApplication {
 			int id = KeyBoardUtil.getInt("Enter id: ");
 
 			Product p = dao.getProduct(id);
-
-			System.out.println("ID: " +  p.getId());
-			System.out.println("Name: " +  p.getName());
-			System.out.println("Description: " +  p.getDescription());
-			System.out.println("Brand: "+ p.getBrand());
-			System.out.println("Category: " +  p.getCategory());
-			System.out.println("Quantity per unit: " +  p.getQuantityPerUnit());
-			System.out.println("Price per unit: " +  p.getUnitPrice());
-			System.out.println("Discount: " +  p.getDiscount());
-			System.out.println("Picture: " +  p.getPicture());
+			System.out.println(p);
+//			System.out.println("ID: " +  p.getId());
+//			System.out.println("Name: " +  p.getName());
+//			System.out.println("Description: " +  p.getDescription());
+//			System.out.println("Brand: "+ p.getBrand());
+//			System.out.println("Category: " +  p.getCategory());
+//			System.out.println("Quantity per unit: " +  p.getQuantityPerUnit());
+//			System.out.println("Price per unit: " +  p.getUnitPrice());
+//			System.out.println("Discount: " +  p.getDiscount());
+//			System.out.println("Picture: " +  p.getPicture());
 			System.out.println("");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying to retrieve the product");
 			log.warn(ex.getMessage());
 		}
 	}

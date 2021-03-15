@@ -8,10 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.epsilon.trainig.utils.DBUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import com.epsilon.training.entity.Product;
+import com.epsilon.training.utils.DBUtil;
 
 @Slf4j
 public class JdbcProductDao implements ProductDao {
@@ -32,13 +32,13 @@ public class JdbcProductDao implements ProductDao {
 			String picture = product.getPicture();
 			double discount = product.getDiscount();
 
-			stmt.setString(1, name);
-			stmt.setString(2, brand);
-			stmt.setString(3, category);
-			stmt.setString(4, quantityPerUnit);
-			stmt.setString(5, description);
-			stmt.setString(6, picture);
-			stmt.setDouble(7, unitPrice);
+			stmt.setString(1, category);
+			stmt.setString(2, name);
+			stmt.setString(3, brand);
+			stmt.setString(4, description);
+			stmt.setString(5, quantityPerUnit);
+			stmt.setDouble(6, unitPrice);
+			stmt.setString(7, picture);
 			stmt.setDouble(8, discount);
 
 			stmt.execute(); // 2nd (multiple) DB roundtrips
@@ -102,6 +102,7 @@ public class JdbcProductDao implements ProductDao {
 				
 				stmt.setDouble(1,product.getUnitPrice() );
 				stmt.setInt(2, product.getId());
+				stmt.executeUpdate(sqlUpdate);
 				log.debug("Updated");
 				
 			}catch(Exception ex) {

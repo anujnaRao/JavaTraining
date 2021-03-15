@@ -76,8 +76,7 @@ private static final String FILENAME = "products.csv";
 		PrintWriter out = null;
 
 		try {
-			String filename = "products.csv";
-			File file = new File(filename);
+			File file = new File(FILENAME);
 
 			if (file.exists()) {
 				// open the file for appending
@@ -117,19 +116,18 @@ private static final String FILENAME = "products.csv";
 
 	@Override
 	public Product getProduct(int id)throws DaoException, FileNotFoundException, IOException {
-		String filename = "customers.csv";
 
-		try (FileReader file = new FileReader(filename);
+		try (FileReader file = new FileReader(FILENAME);
 				BufferedReader in = new BufferedReader(file);) {
 
 			String line;
 			// skip the header
 			in.readLine(); // ignore the return value
-			List<Product> products = new ArrayList<>();
+			List<Product> prod = new ArrayList<>();
 			while ((line = in.readLine()) != null) {
 				String[] values = line.split(",");
 				Product p = new Product(values);
-				products.add(p);
+				prod.add(p);
 			}
 		}
 		return null;
@@ -149,25 +147,21 @@ private static final String FILENAME = "products.csv";
 
 	@Override
 	public List<Product> getAll() throws DaoException {
-		// TODO Auto-generated method stub
 		return ProductDao.super.getAll();
 	}
 
 	@Override
 	public List<Product> getByPriceRange(double min, double max) throws DaoException {
-		// TODO Auto-generated method stub
 		return ProductDao.super.getByPriceRange(min, max);
 	}
 
 	@Override
 	public List<Product> getByBrand(String brand) throws DaoException {
-		// TODO Auto-generated method stub
 		return ProductDao.super.getByBrand(brand);
 	}
 
 	@Override
 	public List<Product> getByCategory(String category) throws DaoException {
-		// TODO Auto-generated method stub
 		return ProductDao.super.getByCategory(category);
 	}
 	

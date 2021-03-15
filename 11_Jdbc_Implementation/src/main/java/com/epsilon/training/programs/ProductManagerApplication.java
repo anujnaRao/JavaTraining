@@ -6,7 +6,7 @@ import java.util.List;
 import com.epsilon.training.dao.DaoFactory;
 import com.epsilon.training.dao.ProductDao;
 import com.epsilon.training.entity.Product;
-import com.epsilon.trainig.utils.KeyBoardUtil;
+import com.epsilon.training.utils.KeyBoardUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -149,11 +149,13 @@ public class ProductManagerApplication {
 
 	void acceptAndUpdateProductDetails() {
 		try {
+			int id = KeyBoardUtil.getInt("Enter the id: ");
 			double unitPrice = KeyBoardUtil.getDouble("Enter the price per unit: ");
 
 			Product p = new Product();
+			p.setId(id);
 			p.setUnitPrice(unitPrice);
-
+			
 			dao.updateProduct(p);
 			System.out.println("Producr details updated");
 		}
@@ -181,15 +183,12 @@ public class ProductManagerApplication {
 			System.out.println("");
 		}
 		catch(Exception ex) {
-			log.warn("There was an error while trying to add a product");
+			log.warn("There was an error while trying to retrieve the product");
 			log.warn(ex.getMessage());
 		}
 	}
 
 	void acceptAndAddProductDetails() {
-
-		// create a product object
-		// use the addProduct function in dao object
 
 		try {
 			// create variables for all product fields

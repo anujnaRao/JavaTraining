@@ -101,19 +101,19 @@ public class PrintCalender {
             System.out.println("Sun     Mon     Tue     Wed     Thu     Fri     Sat");
 
             // Print spaces depending on the day the month starts.
-            int firstDayEachMonth = (daysMonth + firstDayYear)%7;
-            for (int space = 1; space <= firstDayEachMonth; space++)
-                System.out.print("   ");
-
-            // Print the days 
-            for (int daysDisplay = 1; daysDisplay <= daysMonth; daysDisplay++)
-            {
-                if (firstDayYear%7 == 0)
-                    System.out.println();
-
-                System.out.printf("%3d      ", daysDisplay);
-                firstDayYear += 1;
-            }
+//            int firstDayEachMonth = (daysMonth + firstDayYear)%7;
+//            for (int space = 1; space <= firstDayEachMonth; space++)
+//                System.out.print("   ");
+//
+//            // Print the days 
+//            for (int daysDisplay = 1; daysDisplay <= daysMonth; daysDisplay++)
+//            {
+//                if (firstDayYear%7 == 0)
+//                    System.out.println();
+//
+//                System.out.printf("%3d      ", daysDisplay);
+//                firstDayYear += 1;
+//            }
             System.out.println();
 
 	}

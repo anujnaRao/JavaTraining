@@ -10,7 +10,7 @@ public final class DaoFactory {
 	}
 	
 	static {
-		// gets executed only oncce
+		// gets executed only once
 		String envVal = System.getenv("DAO_IMPL");
 		if(envVal == null) {
 			ResourceBundle rb = ResourceBundle.getBundle("dao");
@@ -26,11 +26,14 @@ public final class DaoFactory {
 			return new DefaultProfuctDao();
 		case "ARRAY":
 			return new ArrayProductDao();
+		case "ARRAYLIST":
+			return new ArrayListProductDao();
 		case "JDBC":
 			return new JdbcProductDao();
 		case "MONGODB":
-		case "CSV":
 			throw new RuntimeException("Please implement the ProductDao");
+		case "CSV":
+			return new CsvProductDao();
 			default:
 				throw new RuntimeException("Please implement the ProductDao");
 		}

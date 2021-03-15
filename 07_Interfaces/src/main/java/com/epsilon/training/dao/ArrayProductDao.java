@@ -9,7 +9,7 @@ public class ArrayProductDao implements ProductDao{
 
 	Product[] products;
 	int[] list;
-	int index = 0, count = 0, c = 0, d = 0;
+	int index = 0,  d = 0;
 	static final int MAX_PRODUCTS = 100;
 
 	public ArrayProductDao() {
@@ -20,11 +20,12 @@ public class ArrayProductDao implements ProductDao{
 
 	@Override
 	public void createProduct(Product product) {
-		log.debug("ArrayProductDao.addProduct() called with {}", product);
+		log.debug("ArrayProductDao.createProduct() called with {}", product);
 
 		if(product.getId() < 0 || product.getId() > 99999) {
 			throw new RuntimeException("Please enter valid ID");
-		} else {
+		} 
+		else {
 //			for(int i = 0; i< list.length;i++) {
 //				if(list[i] ==  product.getId()) {
 //					throw new RuntimeException("Id already exists");
@@ -40,15 +41,16 @@ public class ArrayProductDao implements ProductDao{
 				throw new RuntimeException("Description cannot be null ");
 			}else if(product.getBrand() == null) {
 				throw new RuntimeException("Band cannot be null");
-			} else if(product.getCategory() == null) {
-				throw new RuntimeException("Category cannot be null");
-			} else if(product.getQuantityPerUnit() == null) {
-				throw new RuntimeException("Quantity cannot be null");
-			} else if(product.getUnitPrice() < 0 || product.getUnitPrice() > 200) {
-				throw new RuntimeException("Unit price cannot be negative or more than 200");
-			} else if(product.getDiscount() < 0 || product.getUnitPrice() > (Integer.parseInt(product.getQuantityPerUnit()) * product.getUnitPrice() ) ) {
-				throw new RuntimeException("Discount cannot be negative or it cannot be greater than the amount of the product");
 			}
+//			else if(product.getCategory() == null) {
+//				throw new RuntimeException("Category cannot be null");
+//			} else if(product.getQuantityPerUnit() == null) {
+//				throw new RuntimeException("Quantity cannot be null");
+//			} else if(product.getUnitPrice() < 0 || product.getUnitPrice() > 200) {
+//				throw new RuntimeException("Unit price cannot be negative or more than 200");
+//			} else if(product.getDiscount() < 0 || product.getUnitPrice() > (Integer.parseInt(product.getQuantityPerUnit()) * product.getUnitPrice() ) ) {
+//				throw new RuntimeException("Discount cannot be negative or it cannot be greater than the amount of the product");
+//			}
 		}
 		if (index < MAX_PRODUCTS - 1) {
 			this.products[index++] = product;
@@ -62,7 +64,7 @@ public class ArrayProductDao implements ProductDao{
 	public Product getProduct(int id) {
 		//		log.debug("ArrayProductDao.addProduct() called with {}", product);
 		int position = 0;
-		if (products == null || index <= 0 || index >= index) { 
+		if (products == null || index <= 0 || index == MAX_PRODUCTS) { 
 			throw new RuntimeException("No item is present in the list");
 		} 
 		for(int i = 0; i < index;i++) {
@@ -79,18 +81,15 @@ public class ArrayProductDao implements ProductDao{
 
 	@Override
 	public void updateProduct(Product product) {
-		log.debug("ArrayProductDao.addProduct() called with {}", product);
+		log.debug("ArrayProductDao.updateProduct() called with {}", product);
 
-		for(int i = 0; i < index;i++, c++) {
+		for(int i = 0; i < index;i++) {
 			if(products[i].getId() ==  product.getId()) {
-				log.debug("Updated details: ");
+				products[i].setUnitPrice(product.getUnitPrice());
+				log.debug("Updated");
 				this.getProduct(product.getId());
 			}
 		}
-		if(c == index) {
-			throw new RuntimeException("Id does not exists");
-		}
-		c=0;
 	}
 
 	@Override
@@ -98,7 +97,7 @@ public class ArrayProductDao implements ProductDao{
 
 		Product[] copy = new Product[index - 1];
 
-		if (products == null || index <= 0 || index >= index) { 
+		if (products == null || index <= 0 || index >= MAX_PRODUCTS) { 
 			throw new RuntimeException("No item is present in the list");
 		} 
 		for(int i = 0; i < index;i++, d++) {
@@ -112,6 +111,7 @@ public class ArrayProductDao implements ProductDao{
 				throw new RuntimeException("Id does not exists");
 			}
 		}
+		products = copy;
 		if(d == products.length) {
 			throw new RuntimeException("Id does not exists");
 		}
