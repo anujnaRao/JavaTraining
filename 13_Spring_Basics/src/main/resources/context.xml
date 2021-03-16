@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- scope = prototype -->
+
+	<bean id="dummy" class="com.epsilon.training.dao.DummyProductDao">
+	</bean>
+
+	<bean name="jdbc, dao"
+		class="com.epsilon.training.dao.JdbcProductDao">
+		<property name="username" value="root" />
+		<property name="password" value="root@123" />
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url"
+			value="jdbc:h2:tcp://localhost/~/epsilontraining" />
+	</bean>
+
+	<!-- Constructor based injection avoided -->
+	<bean name="dao1" class="com.epsilon.training.dao.JdbcProductDao">
+		<constructor-arg name="username" value="root" />
+		<constructor-arg name="password" value="root@123" />
+		<constructor-arg index="0"
+			value="jdbc:h2:tcp://localhost/~/epsilontraining" />
+		<constructor-arg value="org.h2.Driver" />
+	</bean>
+
+	<bean name="dao2" class="org.apache.commons.dbcp2.BasicDataSource">
+		<!-- manual wiring using setter injection -->
+ 		<property name="dataSource" ref="dbcp"/>
+	</bean>
+	
+	<bean name="dbcp" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="username" value="root" />
+		<property name="password" value="root@123" />
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url"
+			value="jdbc:h2:tcp://localhost/~/epsilontraining" />
+		<property name="maxTotal" value="50" />
+		<property name="initialSize" value="5" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWaitMills" value="3000" />
+	</bean>
+	
+	<bean name="mysqlcp, dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="username" value="root" />
+		<property name="password" value="root@123" />
+		<property name="driverClassName" value="org.h2.Driver" />
+		<property name="url"
+			value="jdbc:h2:tcp://localhost/~/epsilontraining" />
+		<property name="maxTotal" value="50" />
+		<property name="initialSize" value="5" />
+		<property name="maxIdle" value="5" />
+		<property name="maxWaitMills" value="3000" />
+	</bean>
+
+</beans>
