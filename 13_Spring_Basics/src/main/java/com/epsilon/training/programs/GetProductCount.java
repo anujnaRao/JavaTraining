@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GetProductCount { 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		ApplicationContext ctx;
 		
 		ctx = new ClassPathXmlApplicationContext("context.xml");

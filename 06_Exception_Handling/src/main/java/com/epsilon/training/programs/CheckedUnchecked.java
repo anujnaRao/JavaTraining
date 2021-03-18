@@ -33,7 +33,6 @@ public class CheckedUnchecked {
 				e.printStackTrace();
 			}
 		}
-		
 		log.debug("n1 is {} ", n1);
 		//Unchecked - arithmetic, numberformat - optional
 		//Unchecked -- filenotfound, sql -- compulsory throws or try/catch -- both un/check for compiler

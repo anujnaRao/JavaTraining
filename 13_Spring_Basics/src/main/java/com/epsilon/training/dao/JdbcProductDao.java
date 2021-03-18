@@ -8,9 +8,13 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Repository("dao") // @Service @Repository @Component @Controller @RestController
 public class JdbcProductDao implements ProductDao {
 	
 	private String url;
@@ -18,6 +22,7 @@ public class JdbcProductDao implements ProductDao {
 	private String password;
 	private String driverClassName;
 	
+	@Autowired(required=false)
 	private DataSource dataSource;
 	
 	
